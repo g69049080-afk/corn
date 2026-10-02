@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Y_scripts</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 50% 0%, #252525 0%, #0b0b0b 40%, #000000 75%);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 70px;
+            font-weight: 900;
+            letter-spacing: -4px;
+
+            background: linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #eeeeee 18%,
+                #777777 45%,
+                #ffffff 65%,
+                #555555 100%
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.25),
+                0 0 30px rgba(255, 255, 255, 0.08);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-top: 5px;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .code-box {
+            position: relative;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .top-bar {
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px 0 18px;
+            border-bottom: 1px solid #292929;
+            background: #111111;
+        }
+
+        .file-name {
+            color: #777;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .copy-button {
+            border: 1px solid #444;
+            background: linear-gradient(#f5f5f5, #bdbdbd);
+            color: #050505;
+            font-weight: bold;
+            padding: 9px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .copy-button:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        .copy-button:active {
+            transform: translateY(1px);
+        }
+
+        pre {
+            margin: 0;
+            padding: 25px;
+            overflow-x: auto;
+            color: #e6e6e6;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .discord {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 12px;
+            }
+
+            .logo {
+                font-size: 48px;
+            }
+
+            pre {
+                font-size: 12px;
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">Y_scripts</div>
+
+    <div class="subtitle">
+        Simple scripts. Clean code.
+    </div>
+
+    <div class="code-box">
+
+        <div class="top-bar">
+            <div class="file-name">
+                no-porn.user.js
+            </div>
+
+            <button class="copy-button" id="copyButton">
+                Copy
+            </button>
+        </div>
+
+        <pre><code id="code">// ==UserScript==
+// @name        No Porn
+// @namespace   .gg/vCqEqCfdt2
+// @version     1.1.0
+// @match       *://pornhub.com/*
+// @match       *://*.pornhub.com/*
+// @run-at      document-start
+// @grant       none
+// @author      Y_scripts
+// @description Stop porn
+// ==/UserScript==
+
+(function () {
+    "use strict";
+
+    alert("VIOLENTMONKEY WORKED!");
+
+    function blockPage() {
+        document.documentElement.innerHTML = "";
+
+        const style = document.createElement("style");
+
+        style.textContent = `
+            html, body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-family: Arial, sans-serif;
+            }
+
+            h1 {
+                font-size: 50px;
+                margin: 10px;
+            }
+
+            .discord {
+                font-size: 20px;
+                margin-top: 10px;
+            }
+
+            .watermark {
+                position: fixed;
+                bottom: 15px;
+                right: 20px;
+                font-size: 16px;
+                opacity: 0.6;
+            }
+
+            button {
+                font-size: 25px;
+                padding: 15px 25px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        `;
+
+        const message = document.createElement("h1");
+        message.textContent = "STAY FOCUSED";
+
+        const button = document.createElement("button");
+        button.textContent = "Worked successfully";
+
+        const discord = document.createElement("div");
+        discord.className = "discord";
+        discord.textContent = "Discord: discord.gg/vCqEqCfdt2";
+
+        const watermark = document.createElement("div");
+        watermark.className = "watermark";
+        watermark.textContent = "Y_scripts";
+
+        document.head.appendChild(style);
+        document.body.appendChild(message);
+        document.body.appendChild(button);
+        document.body.appendChild(discord);
+        document.body.appendChild(watermark);
+    }
+
+    if (document.documentElement) {
+        blockPage();
+    } else {
+        document.addEventListener("DOMContentLoaded", blockPage);
+    }
+})();</code></pre>
+
+    </div>
+
+    <div class="footer">
+        Y_scripts
+        <div class="discord">
+            discord.gg/vCqEqCfdt2
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const copyButton = document.getElementById("copyButton");
+    const code = document.getElementById("code");
+
+    copyButton.addEventListener("click", async function () {
+
+        await navigator.clipboard.writeText(code.textContent);
+
+        copyButton.textContent = "Copied!";
+
+        setTimeout(function () {
+            copyButton.textContent = "Copy";
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>
